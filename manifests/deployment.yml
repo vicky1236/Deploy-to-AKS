@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: vickydeploytoaks 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: vickydeploytoaks
+  template:
+    metadata:
+      labels:
+        app: vickydeploytoaks 
+    spec:
+      containers:
+        - name: vickydeploytoaks 
+          image: bharathyg.azurecr.io/vickydeploytoaks
+          ports:
+          - containerPort: 80
