@@ -40,7 +40,15 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-
+    - task: SnykSecurityScan@1
+      inputs:
+        serviceConnectionEndpoint: 'bgsynk'
+        testType: 'container'
+        dockerImageName: 'vickydeploytoaks'
+        dockerfilePath: '**/Dockerfile'
+        monitorWhen: 'always'
+        failOnIssues: true
+        
     - upload: manifests
       artifact: manifests
 
